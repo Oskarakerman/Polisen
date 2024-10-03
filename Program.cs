@@ -1,29 +1,47 @@
 ﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
 
-public class Report
+using System.Xml.Serialization;
+
+class Program
 {
-    public int ReportNumber {get; set;}
-    public int Date {get; set;}
-    public string Station {get; set;}
-    public string Description {get; set;}
+    static void Main()
+    {
+        bool IsRunning = true; 
 
-    public Report(int ReportNumber, string Station, string Description, int Date)
-    {
-        this.ReportNumber = ReportNumber;
-        this.Station = Station; 
-        this.Description = Description; 
-        this.Date = Date; 
-    }
-    public static void AddReport()
-    {
-        Console.WriteLine("Lägg till ett rapportnummer");
-        int ReportNumber = int.Parse(Console.ReadLine());
-        Console.WriteLine("Ange datum för rapporten");
-        int Date = int.Parse(Console.ReadLine());
-        Console.WriteLine("Ange vilken station"); 
-        string Station = Console.ReadLine(); 
-        Console.WriteLine("Ange en beskrivning"); 
-        string Description = Console.ReadLine();  
+        while (IsRunning)
+        {
+            Console.WriteLine("1. Lägg till rapport");
+            Console.WriteLine("2. Visa lista över rapporter");
+            Console.WriteLine("3. Visa fullständig info om rapport");
+            Console.WriteLine("4. Avsluta");
+            string choice = Console.ReadLine(); 
+
+            switch(choice)
+            {
+                case "1": 
+                Reporthandler.AddReport();
+                break;
+
+                case "2":
+                Reporthandler.PrintReports();
+                break;
+
+                case "3":
+                Reporthandler.Printinforeport();
+                break; 
+
+                case "4":
+                IsRunning = false;
+                break;
+
+                default: 
+                Console.Clear(); 
+                Console.WriteLine("Fel val");
+                continue;
+                
+            }
+
+        }
+
     }
 }
